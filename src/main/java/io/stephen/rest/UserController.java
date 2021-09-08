@@ -22,23 +22,23 @@ public class UserController {
     private UserRepository userRepository;
 
     @GetMapping("/")
-    List<user> getAllUsers() {
+    List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    user getUser(@PathVariable String id) {
+    User getUser(@PathVariable String id) {
         return userRepository.findById(id).orElse(null);
     }
 
     @PostMapping("/")
-    user createUser(@RequestBody user user) {
+    User createUser(@RequestBody User user) {
         return userRepository.save(user);
     }
 
     @PutMapping("/{id}")
-    user updateUser(@PathVariable String id, @RequestBody user user) {
-        user oldUser = userRepository.findById(id).orElse(null);
+    User updateUser(@PathVariable String id, @RequestBody User user) {
+        User oldUser = userRepository.findById(id).orElse(null);
         oldUser.setName(user.getName());
         oldUser.setEmail(user.getEmail());
         oldUser.setAddress(user.getAddress());
